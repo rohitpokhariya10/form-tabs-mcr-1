@@ -1,18 +1,17 @@
-export default Profile = ({ data, setData, errors }) => {
+const Profile = ({ data, setData, errors }) => {
   let { name, email, age } = data;
 
   const handleProfileData = (e) => {
-    setData((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
+    setData((prevData) => {
+      return { ...prevData, [e.target.name]: e.target.value };
+    });
   };
 
   return (
     <div>
       <div className="profile-fields">
         <div>
-          <label>Pofile</label>
+          <label>Name</label>
           <input
             type="text"
             name="name"
@@ -47,3 +46,4 @@ export default Profile = ({ data, setData, errors }) => {
     </div>
   );
 };
+export default Profile;

@@ -3,19 +3,20 @@ import Interest from "./Interest";
 import Settings from "./Settings";
 import { useState } from "react";
 
-export default Tab = () => {
+export default function Tab() {
+  // console.log("hi rendering...");
   const [activeTab, setActiveTab] = useState(0);
   const [errors, setErrors] = useState({});
-
-  console.log("errors-->", errors);
-
+  const [allData, setAllData] = useState([]);
   const [data, setData] = useState({
-    name: "shubam",
-    age: 22,
-    email: "rohit.pokhariya123@gmail.com",
     interests: [],
-    theme: "dark",
   });
+  console.log("activeTab-->", activeTab);
+  console.log("AllData-->", allData);
+  //console.log("errors-->", errors);
+
+  //console.log("data-->", data);
+
   const handleNext = () => {
     if (tabs[activeTab].validate()) {
       setActiveTab((prevData) => prevData + 1);
@@ -28,7 +29,8 @@ export default Tab = () => {
   };
   const handleAllData = () => {
     // Make an API Call
-    console.log("Final data--->", data);
+    //console.log("Final data--->", data);
+    setAllData((prev) => [...prev, data]);
   };
 
   const tabs = [
@@ -80,14 +82,15 @@ export default Tab = () => {
           <h3
             key={index}
             className="tab-item"
-            onClick={() => setActiveTab(index)}
+            // onClick={() => setActiveTab(index)}
           >
             {tab.name}
           </h3>
         ))}
       </div>
+
       <div className="tab-content">
-        <ActiveTabComponent data={data} setData={setData} errors={errors} />
+        {<ActiveTabComponent data={data} setData={setData} errors={errors} />}
       </div>
 
       <div className="btn-div">
@@ -108,4 +111,4 @@ export default Tab = () => {
       </div>
     </div>
   );
-};
+}
